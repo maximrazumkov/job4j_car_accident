@@ -68,4 +68,14 @@ public class Accident implements Serializable {
         result = 17 * result + id;
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Accident{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", text='" + text + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }

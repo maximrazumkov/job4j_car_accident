@@ -21,6 +21,7 @@
 </head>
 <body>
 <div class="container">
+    <a href="<c:url value='/create'/>">Добавить инцидент</a>
     <div class="row">
         <table class="table">
             <thead>
@@ -31,13 +32,13 @@
             </tr>
             </thead>
             <tbody>
-            <% for (Accident accident : AccidentMem.instOf().findAll()) { %>
-            <tr>
-                <td><%= accident.getName() %></td>
-                <td><%= accident.getText() %></td>
-                <td><%= accident.getAddress() %></td>
-            </tr>
-            <% } %>
+                <c:forEach items="${accidents}" var="accident">
+                    <tr>
+                        <td><c:out value="${accident.name}"/></td></br>
+                        <td><c:out value="${accident.text}"/></td></br>
+                        <td><c:out value="${accident.address}"/></td></br>
+                    </tr>
+                </c:forEach>
             </tbody>
         </table>
     </div>

@@ -4,9 +4,9 @@ import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class AccidentMem {
@@ -14,6 +14,8 @@ public class AccidentMem {
     private static final AccidentMem INST = new AccidentMem();
 
     private final Map<Integer, Accident> accidents = new ConcurrentHashMap<>();
+
+    private final AtomicInteger idx = new AtomicInteger(6);
 
     private AccidentMem() {
         accidents.put(1, new Accident(1, "проезд на красный свет", "description 1", "Москва, Мухасранский переулок, д.8"));
@@ -33,5 +35,10 @@ public class AccidentMem {
 
     public Collection<Accident> findAll() {
         return accidents.values();
+    }
+
+    public void create(Accident accident) {
+        accident.setId(idx.getAndIncrement());
+        accidents.put(accident.getId(), accident);
     }
 }
