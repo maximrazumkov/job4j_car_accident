@@ -7,7 +7,7 @@ import ru.job4j.accident.model.Accident;
 
 import java.util.List;
 
-@Repository
+//@Repository
 public class AccidentHibernate {
     private final SessionFactory sf;
 
